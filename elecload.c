@@ -18,6 +18,10 @@
 	PA4~PA7 KEY
 	PB5 LIGHT
 	PB4 OVP/STATUS
+	ADC0 for adjustment
+	ADC1 for V meter in 16 volts
+	ADC2 for V meter in 60 volts
+	ADC3 for I meter in 10 amps
 */
 
 struct Key
@@ -168,8 +172,8 @@ static void adc_setup(void)
 	volatile int i;
 	gpio_clear(GPIOB, GPIO0 | GPIO1 | GPIO2 | GPIO3);
 	gpio_set_mode(GPIOA, GPIO_MODE_OUTPUT_50_MHZ,
-		      GPIO_CNF_OUTPUT_PUSHPULL, GPIO0 | GPIO2);
-	gpio_set_mode(GPIOA, GPIO_MODE_INPUT, GPIO_CNF_INPUT_ANALOG, GPIO1 | GPIO3);
+		      GPIO_CNF_OUTPUT_PUSHPULL, GPIO0);
+	gpio_set_mode(GPIOA, GPIO_MODE_INPUT, GPIO_CNF_INPUT_ANALOG, GPIO1 | GPIO2 | GPIO3);
 	//gpio_set_mode(GPIOA, GPIO_MODE_INPUT, GPIO_CNF_INPUT_ANALOG, GPIO2);
 	//gpio_set_mode(GPIOA, GPIO_MODE_INPUT, GPIO_CNF_INPUT_ANALOG, GPIO3);
 	/* Make sure the ADC doesn't run during config. */
